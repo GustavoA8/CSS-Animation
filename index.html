@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Effect CSS</title>
+    <style>
+        /* *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+           align-items: center;
+           justify-content: center;
+           height: 100vh;
+           background: rgba(25,25,25); 
+        }
+        .line{
+            border-right: 2px solid rgba(255,255,255,0.75);
+            color: rgba(255,255,255,0.75);
+            font-size: 3em;
+            margin: 0 auto;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .typing-animation{
+            animation: blinkCursor 500ms steps(40) infinite normal,typing 4s steps(40) 1s normal both;
+        }
+        .sumir{
+            display: none;
+        }
+
+
+        @keyframes typing{
+            from{
+                width: 0;
+            }
+            to {
+                width: 22.5em;
+            }
+        }
+        @keyframes blinkCursor {
+            from{
+                border-right-color: rgba(255,255,255,0.75);
+            }
+            to{
+                border-right-color:transparent;
+            }
+        } */
+        body{
+            background-color: black;
+        }
+        #texto {
+            max-width: 480px;
+            text-align: center;
+            margin: 60px auto;
+            font-family: 'Courier New', Courier, monospace;
+            color: #fff;
+        }
+
+        #texto:after {
+            content: '|';
+            margin-left: 5px;
+            opacity: 1;
+            animation: pisca .7s infinite;
+        }
+
+        /* Animação aplicada ao content referente a classe *.titulo-principal* resultando num efeito de cursor piscando. */
+
+        @keyframes pisca {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p class="" id="texto"></p><br>
+
+
+    <button id="botao">Avançar</button>
+    <div id="contador">0</div>
+
+    <script src="js/index.js" type="module"></script>
+    <script type="module">
+        import { Animacao } from './js/index.js'
+        let animacao = new Animacao();
+
+
+        console.log(animacao.getContador())
+        const texto = document.querySelector("#texto")
+        animacao.addContador()
+        console.log(animacao.getContador())
+
+        const fala = [];
+        fala[0] = "Em um mundo onde sonhos e tecnologia se entrelaçam, os jogadores assumem o papel de Kai, um jovem prodígio da programação. "
+        fala[1] = "Perseguido por uma misteriosa figura chamada Nexus, Kai descobre que suas habilidades de programação são cruciais para desvendar os mistérios deste reino dos sonhos e reparar os fragmentos de código quebrado que causam distorções. "
+        fala[2] = "Os jogadores exploram ambientes fantásticos, cada um representando um conceito de programação, enquanto passam obstáculos baseados em lógica, algoritmos e desviam de objetos de hardware a fim de conseguir reparar o mundo dos sonhos e escapar e acabar com os planos de Nexus. "
+        fala[3] = "Ao superar todos os obstáculos do mundo dos sonhos e resolver os difíceis códigos quebrados, Kai desvenda sua própria jornada emocional e desafia a escuridão, que terá um desfecho emocionante e intrigante no final dessa longa jornada. "
+        fala[4] = ""
+        fala[4] = ""
+        fala[4] = ""
+        fala[4] = ""
+        fala[4] = ""
+        fala[4] = ""
+        fala[4] = ""
+        
+
+        texto.innerHTML = fala[0]
+        let botao = document.querySelector("#botao")
+
+        function typeWrite(elemento) {
+            const textoArray = elemento.innerHTML.split('');
+            elemento.innerHTML = ' ';
+            textoArray.forEach(function (letra, i) {
+
+                setTimeout(function () {
+                    
+                    elemento.innerHTML += letra;
+                }, 75*i )
+
+            });
+        }
+        const titulo = document.querySelector('.titulo-principal');
+        typeWrite(texto);
+
+
+       
+        let TrocarFala =()=> {
+            
+            console.log(animacao.getContador())
+
+            typeWrite(fala[animacao.getContador()])
+            animacao.addContador()
+
+        }
+
+        botao.addEventListener('click', TrocarFala)
+
+
+    //   setTimeout(()=>{
+    //    fala.forEach(linha=>{
+    //     texto.innerHTML=linha
+    //    })
+    //     },5000)
+
+
+    </script>
+
+</body>
+
+</html>
